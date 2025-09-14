@@ -1,6 +1,6 @@
 (function(){
 	const API = (typeof window !== 'undefined' && window.API_BASE) ? String(window.API_BASE).replace(/\/$/, '') : 'http://localhost:3000';
-	// Map cards in the DOM to canteen IDs
+	// map cards in the DOM to canteen IDs
 	const CAN_TEEN_IDS = {
 		Mahagedara: 2,
 		Meta: 1,
