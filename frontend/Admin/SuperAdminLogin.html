@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen SuperAdmin Login</title>
+    <link rel="stylesheet" href="AdminLogin.css">
+    <script src="../errorpage/error.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Super Admin Login</h1>
+        <p>Access the main administration dashboard</p>
+       <nav class="nav">
+        <a href="../homepage/index.html">← Back to Home</a>
+        <a href="./adminLogin.html">Admin Login</a>
+    </nav>
+    </div>
+
+    
+    <div class="center-box">
+        <form id="SuperAdminLoginForm" class="login-box">
+            <div class="box-header">Super Admin Login</div>
+            <div class="input-box">
+                <label for="username">
+                    <span class="icon">&#128100;</span>
+                    <input type="text" id="username" name="username" placeholder="UserName"   autocomplete="username" required>
+                </label>
+            </div>
+            <div class="input-box">
+                <label for="password">
+                    <span class="icon">&#128274;</span>
+                    <input type="password" id="password" name="password" placeholder="Password"   autocomplete="current-password" required>
+                </label>
+            </div>
+            <div class="checkbox-row">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            <button type="submit" class="login-btn">LOGIN</button>
+        </form>
+    </div>
+
+    
+    <footer class="responsive-footer">
+    <p class="footer-text">&copy; 2025 UniCanteen by MenuMasters | All rights reserved</p>
+</footer>
+
+
+    <script src="SuperAdminLogin.js"></script>
+</body>
+</html>
