@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #fff;
+  color: #222;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: #2baa40;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  flex-wrap: nowrap;
+    overflow-x: auto;   
+  white-space: nowrap; 
+}
+.logo span {
+  margin-top: 5px;
+  font-weight: bold;
+  color: white;   
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+ 
+} 
+
+.logo img {
+  
+  height: 50px;  
+  width: auto;    
+  vertical-align: middle;  
+   margin-right: -20px;  
+}
+
+nav {
+  display: flex;
+  gap: 15px;   
+  flex-shrink: 0; 
+}
+
+nav a {
+    
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: color 0.3s;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+@media (max-width: 1024px) {
+  nav {
+    gap: 12px;  
+  }
+}
+@media (max-width: 768px) {
+  nav {
+    gap: 10px;
+  }
+  header {
+    padding: 15px;
+  }
+}
+
+nav a:hover {
+  color: #ffeb3b;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.error-box {
+  text-align: center;
+  padding: 2em;
+  border-radius: 8px;
+  background: #fff;
+  max-width: 300px;
+  width: 100%;
+}
+
+.error-box h1 {
+  font-size: 3.5em;
+  margin: 0;
+  color: #2baa40;
+  font-weight: 700;
+}
+
+.error-box p {
+  font-size: 1.3em;
+  margin: 0.5em 0 1.4em 0;
+  color: #0a0a0a;
+}
+
+.error-box button {
+  display: inline-block;
+  padding: 0.6em 2em;
+  border: 2px solid #2baa40;
+  border-radius: 10px;
+  background: transparent;
+  color: #222;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.error-box button:hover {
+  background: #2baa40;
+  color: #fff;
+}
+.responsive-footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #fafafa;
+  font-size: 1em;
+  color: #555;
+  border-top: 1px solid #eee;
+}
+
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em 0.6em;
+  }
+  .brand {
+    margin-bottom: 8px;
+  }
+  nav a {
+    margin-left: 1em;
+    font-size: 0.94em;
+  }
+  .error-box {
+    max-width: 90vw;
+    padding: 1em;
+  }
+}}
