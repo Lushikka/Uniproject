@@ -1,23 +1,36 @@
-require('dotenv').config(); // Load .env variables
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// PostgreSQL connection using Neon
+
+
+
+
+
+
+// Database config (hardcoded)
+// Use the connection string from the .env file.
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-});
+    user: 'postgres',
+    host: 'localhost',
+    database: 'unicanteen',
+    password: 'nilu',
+    port: 5432
 
+});
 // Test database connection
 (async () => {
     try {
         const client = await pool.connect();
         const res = await client.query('SELECT NOW()');
         console.log('Database connected! Current time:', res.rows[0]);
+        console.log('Database connected successfully!');
         client.release();
     } catch (err) {
         console.error('Database connection error:', err);
@@ -26,11 +39,12 @@ const pool = new Pool({
 
 // Middleware
 app.use(cors({
-    origin: '*',
+    origin: process.env.FRONTEND_ORIGIN || '*',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
 }));
 app.use(bodyParser.json());
+
 
 // Routes
 
@@ -54,6 +68,14 @@ app.post('/admin-login', async (req, res) => {
         );
 
         if (result.rows.length > 0) {
+            const admin = result.rows[0];
+            // WARNING: Storing and comparing plain text passwords is a major security risk.
+            // You should hash passwords with bcrypt when creating users and use bcrypt.compare() here.
+            // const isMatch = await bcrypt.compare(password, admin.password);
+            const isMatch = (password === admin.password); // Keep for now, but should be updated.
+
+            if (!isMatch) return res.status(401).json({ success: false, message: 'Invalid username or password' });
+
             res.json({
                 success: true,
                 message: 'Login successful',
@@ -62,6 +84,7 @@ app.post('/admin-login', async (req, res) => {
                     username: result.rows[0].username,
                     canteenName: result.rows[0].canteen_name,
                 },
+                userData: { id: admin.id, username: admin.username, canteenName: admin.canteen_name },
             });
         } else {
             res.status(401).json({ success: false, message: 'Invalid username or password' });
@@ -85,8 +108,17 @@ app.post('/super-admin-login', async (req, res) => {
             'SELECT * FROM super_admin WHERE username = $1 AND password = $2',
             [username, password]
         );
+       
 
         if (result.rows.length > 0) {
+            const superAdmin = result.rows[0];
+            // WARNING: Storing and comparing plain text passwords is a major security risk.
+            // You should hash passwords with bcrypt when creating users and use bcrypt.compare() here.
+            // const isMatch = await bcrypt.compare(password, superAdmin.password);
+            const isMatch = (password === superAdmin.password); // Keep for now, but should be updated.
+
+            if (!isMatch) return res.status(401).json({ success: false, message: 'Invalid super admin credentials' });
+
             res.json({
                 success: true,
                 message: 'Super admin login successful',
@@ -94,6 +126,7 @@ app.post('/super-admin-login', async (req, res) => {
                     id: result.rows[0].id,
                     username: result.rows[0].username,
                 },
+                userData: { id: superAdmin.id, username: superAdmin.username },
             });
         } else {
             res.status(401).json({ success: false, message: 'Invalid super admin credentials' });
@@ -241,9 +274,13 @@ app.use((err, req, res, next) => {
     });
 });
 
+process.on('unhandledRejection', (reason) => {
+    console.error('Unhandled Rejection:', reason);
+});
+
 // Start server
+const PORT = 3000; // fixed port, no env
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log('Press Ctrl+C to stop the server');
 });
-
