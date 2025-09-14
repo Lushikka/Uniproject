@@ -1,0 +1,226 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  background: #2baa40;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  flex-wrap: nowrap;
+    overflow-x: auto;   
+  white-space: nowrap; 
+}
+.logo span {
+  margin-top: 5px;
+  font-weight: bold;
+  color: white;   
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+ 
+} 
+
+.logo img {
+  
+  height: 50px;  
+  width: auto;    
+  vertical-align: middle;  
+   margin-right: -20px;  
+}
+
+nav {
+  display: flex;
+  gap: 15px;   
+  flex-shrink: 0; 
+}
+
+nav a {
+    
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: color 0.3s;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+@media (max-width: 1024px) {
+  nav {
+    gap: 12px;  
+  }
+}
+@media (max-width: 768px) {
+  nav {
+    gap: 10px;
+  }
+  header {
+    padding: 15px;
+  }
+}
+
+nav a:hover {
+  color: #ffeb3b;
+}
+
+/* Hero Section */
+.hero {
+  background: url(/Frontend/Images/bg.jpg) center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+  position: relative;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 135%;
+  background:rgba(40, 85, 41, 0.6); 
+   z-index: 1; 
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-text {
+  position: relative;
+  z-index:1 ;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* Canteen Cards */
+.canteens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; } 
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 15px;
+  text-align: center;
+ position: relative;
+  width: 280px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  height: auto;
+  position: relative;
+  display: block;
+}
+.overlay {
+  position: absolute;
+  bottom: 90px;       
+  left: 0;
+  width: 100%;
+  height: 40%;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0 0 8px 8px;  
+}
+
+.card-wrapper button {
+  margin-top: 10px;  
+  margin-bottom: 10px;
+  background: #2baa40;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card-wrapper button:hover {
+  background: #228b34;
+}
+
+
+.view-buttons span button:hover {
+  background: #228b34;
+}
+.responsive-footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+}
+footer {
+   background-color: #f5f5f5;
+  text-align: center;
+  padding: 1em;
+  background: #ffffff;
+  font-size: 1em;
+  color: #000000;
+  
+  
+}
+
+.footer-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #0c0c0c;
+}
+
+/* Responsive breakpoints */
+@media screen and (max-width: 768px) {
+    .footer-text {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+}
+
+
+/* Ensure content doesn't hide behind footer */
+body {
+    margin-bottom: 60px; /* Height of footer */
+    min-height: 100vh;
+    position: relative;
+}
