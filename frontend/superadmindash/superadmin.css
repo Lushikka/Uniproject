@@ -1,0 +1,163 @@
+/* general styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* header */
+  .header {
+    background: #4CAF50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-weight: bold;
+    
+  }
+  
+  .header p {
+    margin: 3px 0 0;
+    font-size: 15px;
+    
+  }
+  
+  .logout-btn {
+    padding: 8px 20px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+     transition: background-color 0.3s;
+}
+       
+
+  .logout-btn:hover {
+  background-color: #f0f0f0;
+  color: #2d9e41;
+}
+  
+  /* stats section */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .stat-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 150px;
+    border-radius: 10px;
+    background: #fafafa;
+  }
+  
+  .stat-box h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #4CAF50;
+  }
+  
+  /* canteen Section */
+  .canteen-section {
+    padding: 20px;
+  }
+  
+  .canteen-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .canteen-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 220px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    padding-bottom: 15px;
+  }
+  
+  .canteen-header {
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .canteen-stats {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    align-items: center;
+    gap: 15px; /* spacing between the boxes */
+    margin: 20px 0;
+  }
+  
+  
+  .canteen-box {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    width: 80px;
+    background: #fafafa;
+  }
+  
+  .canteen-box p {
+    margin: 0;
+    font-size: 18px;
+    color: #4CAF50;
+  }
+  
+  .view-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .view-btn:hover {
+    background: #45a049;
+  }
+  
+  /* footer Part */
+  .responsive-footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    
+}
+footer {
+   background-color: #f5f5f5;
+  text-align: center;
+  padding: 1em;
+  background: #ffffff;
+  font-size: 1em;
+  color: #000000;
+  
+  
+}
+
+.footer-text {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #0c0c0c;
+}
