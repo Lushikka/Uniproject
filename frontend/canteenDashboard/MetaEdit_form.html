@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Menu Item</title>
+    <link rel="stylesheet" href="Menu_form.css">
+</head>
+<body>
+    <div class="menu-form-container">
+        <form class="menu-form" id="editMenuForm">
+            <h2>Edit Menu Item</h2>
+
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" name="itemName" class="input-field" required>
+
+            <label for="itemDesc">Description</label>
+            <textarea id="itemDesc" name="itemDesc" class="textarea-field" rows="3" required></textarea>
+
+            <label for="itemPrice">Price (Rs)</label>
+            <input type="number" id="itemPrice" name="itemPrice" class="input-field" step="0.01" required>
+
+            <div class="radio-group">
+                <label>Type:</label>
+                <div class="radio-option">
+                    <input type="radio" id="typeVeg" name="itemType" value="veg" required>
+                    <label for="typeVeg">Vegetarian</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="typeNonVeg" name="itemType" value="non-veg">
+                    <label for="typeNonVeg">Non-Vegetarian</label>
+                </div>
+            </div>
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="itemAvailable" name="itemAvailable">
+                <label for="itemAvailable">Available</label>
+            </div>
+
+            <input type="hidden" id="itemId">
+
+            <div class="form-actions">
+                <button type="button" class="cancel-btn" onclick="window.parent.closeModal()">Cancel</button>
+                <button type="submit" class="primary-btn">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('editMenuForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                id: document.getElementById('itemId').value,
+                item_name: this.itemName.value,
+                price: parseFloat(this.itemPrice.value),
+                type: document.querySelector('input[name="itemType"]:checked').value === 'veg' ? 'Veg' : 'Non-Veg',
+                status: this.itemAvailable.checked ? 'Available' : 'Unavailable'
+            };
+
+            window.parent.postMessage({
+                type: 'editFormSubmission',
+                formData: formData
+            }, '*');
+        });
+
+        // Handle data received from parent window
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'editItemData') {
+                const item = event.data.item;
+                document.getElementById('itemId').value = item.id;
+                document.getElementById('itemName').value = item.item_name || item.name;
+                document.getElementById('itemDesc').value = item.description || '';
+                document.getElementById('itemPrice').value = item.price;
+                document.getElementById(item.type && item.type.toLowerCase().includes('veg') ? 'typeVeg' : 'typeNonVeg').checked = true;
+                document.getElementById('itemAvailable').checked = (item.status === 'Available');
+            }
+        });
+    </script>
+</body>
+</html>
